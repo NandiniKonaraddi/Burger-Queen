@@ -1,0 +1,64 @@
+<div class="product-details-container">
+  <!-- Header -->
+  <header class="header">
+    <i class="fa-solid fa-chevron-left"></i>
+    <h5>Product Details</h5>
+    <i class="fa-solid fa-chevron-right"></i>
+  </header>
+
+  <!-- Product Image -->
+  <div class="product-card">
+    <div class="product-image">
+      <img [src]="product?.image" alt="{{ product?.name }}">
+      <i class="fa-solid fa-heart favorite-icon"></i>
+    </div>
+  </div>
+
+  <!-- Product Info -->
+  <div class="product-info">
+    <div class="product-row">
+      <h4 class="product-name">{{ product?.name }}</h4>
+      <p class="price">₹{{ product?.price }}</p>
+    </div>
+    
+    <p class="stock" [ngClass]="product?.inStock ? 'in-stock' : 'out-stock'">
+      {{ product?.inStock ? 'In Stock' : 'Out of Stock' }}
+    </p>
+    <div class="stars">
+      <i *ngFor="let star of stars" class="fa-solid fa-star" [ngStyle]="{color: 'yellow'}"></i>
+    </div>
+
+    <!-- Quantity Selector -->
+    <div class="product-row">
+      <h4 class="product-name">Product Quality</h4>
+      <button class="add-to-cart" (click)="addItemToCart()" *ngIf="!isAddedToCart">Add to Cart</button>
+    <div class="quantity-selector" *ngIf="isAddedToCart">
+      <button (click)="decreaseQuantity()">-</button>
+      <span>{{ quantity }}</span>
+      <button (click)="increaseQuantity()">+</button>
+    </div>
+  </div>
+    <!-- Product Details -->
+    <h5>Product Details</h5>
+    <p style="font-size: small;">{{ product?.description | slice:0:150 }}...
+      <span class="read-more" (click)="expandDescription()">Read More</span>
+    </p>
+
+    <!-- Related Products -->
+    <h5>Related Products</h5>
+    <div class="related-products">
+      <div *ngFor="let related of relatedProducts" class="related-item">
+        <img [src]="related.image" alt="{{ related.name }}">
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <a [routerLink]="['/']" class="nav-item active"><i class="fa-solid fa-house"></i></a>
+    <a href="#" class="nav-item"><i class="fa-solid fa-th"></i></a>
+    <a href="#" class="nav-item"><i class="fa-regular fa-clock"></i></a>
+    <a [routerLink]="['/cart']" class="nav-item"><i class="fa-solid fa-cart-shopping"></i></a>
+    <a href="#" class="nav-item"><i class="fa-regular fa-user"></i></a>
+  </nav>
+</div>

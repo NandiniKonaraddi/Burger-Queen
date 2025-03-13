@@ -1,0 +1,94 @@
+<div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="menu-icon">
+        <i class="fa-solid fa-bars"></i> 
+      </div>
+      <div class="logo">Burger Queen</div>
+      <div class="cart-icon">
+        <i class="fa-solid fa-bell"></i>  
+        <span class="notification-dot"></span>
+      </div>
+    </header>
+  
+    <div class="search-bar">
+      <input type="text" placeholder="Search">
+      <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+    
+    <!-- Popular Items Section -->
+    <section class="category">
+      <h5 class="section-title">Popular Items</h5>
+      <div class="row">
+        <div *ngFor="let product of products" class="card">
+          <img [src]="product.image" alt="{{ product.name }}" class="responsive-img" (click)="navigateToProductDetails(product.id)">
+          <h6 class="card-title">{{ product.name }}</h6>
+          <p class="price">₹{{ product.price }}</p>
+          <button class="add-to-cart" (click)="addItemToCart(product)" *ngIf="!cartState[product.id].isAdded">
+            Add to Cart
+          </button>
+      
+          <div class="quantity-selector" *ngIf="cartState[product.id].isAdded">
+            <button (click)="decreaseQuantity(product)">-</button>
+            <span>{{ cartState[product.id].quantity }}</span>
+            <button (click)="increaseQuantity(product)">+</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Special Offers -->
+    <section class="category">
+      <h5 class="section-title">Special Offers</h5>
+      <div class="row">
+        <div *ngFor="let product of specialProduct" class="card">
+          <img [src]="product.image" alt="{{ product.name }}" class="responsive-img" (click)="navigateToProductDetails(product.id)">
+          <h6 class="card-title">{{ product.name }}</h6>
+          <p class="price">₹{{ product.price }}</p>
+          <button class="add-to-cart" (click)="addItemToCart(product)" *ngIf="!cartState[product.id].isAdded">
+            Add to Cart
+          </button>
+      
+          <div class="quantity-selector" *ngIf="cartState[product.id].isAdded">
+            <button (click)="decreaseQuantity(product)">-</button>
+            <span>{{ cartState[product.id].quantity }}</span>
+            <button (click)="increaseQuantity(product)">+</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+     <!-- New Arrival Item -->
+     <section class="category">
+      <h5 class="section-title">New Arrival Item</h5>
+      <div class="row">
+        <div *ngFor="let product of newArrivalProducts" class="card">
+          <img [src]="product.image" alt="{{ product.name }}" class="responsive-img" (click)="navigateToProductDetails(product.id)">
+          <h6 class="card-title">{{ product.name }}</h6>
+          <p class="price">₹{{ product.price }}</p>
+          <button class="add-to-cart" (click)="addItemToCart(product)" *ngIf="!cartState[product.id].isAdded">
+            Add to Cart
+          </button>
+      
+          <div class="quantity-selector" *ngIf="cartState[product.id].isAdded">
+            <button (click)="decreaseQuantity(product)">-</button>
+            <span>{{ cartState[product.id].quantity }}</span>
+            <button (click)="increaseQuantity(product)">+</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+      <a href="#" class="nav-item active"><i class="fa-solid fa-house"></i></a>
+      <a href="#" class="nav-item"><i class="fa-solid fa-th"></i></a>
+      <a href="#" class="nav-item"><i class="fa-regular fa-clock"></i></a>
+      <a [routerLink]="['/cart']" class="nav-item"><i class="fa-solid fa-cart-shopping"></i></a>
+      <a href="#" class="nav-item"><i class="fa-regular fa-user"></i></a>
+    </nav>
+    
+  </div>
+  
+
+  
